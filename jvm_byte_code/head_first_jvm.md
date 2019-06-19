@@ -1,6 +1,6 @@
 #  HEAD FIRST JVM BYTE CODE
 
-## Ch01
+## 0x01
 
 #### Magic Number
 + 文件开头8byte，用于识别文件格式，fast fail
@@ -13,7 +13,7 @@
 #### 反编译
 + javap -c: 反编译```*.class```文件，看编译的文件
 
-## ch02
+## 0x02
 
 #### javap -l 看不见 局部变量表
 + 由于编译的时候，未输出相关信息，反编译也无法看到
@@ -142,7 +142,7 @@
 1. [基于栈虚拟机和基于寄存器虚拟机的比较](https://blog.csdn.net/u012481172/article/details/50904574)
 2. [java 栈和栈帧](https://www.cnblogs.com/minisculestep/articles/4934947.html)
 
-
+## 0x03
 
 
 
