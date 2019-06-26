@@ -144,8 +144,51 @@
 
 ## 0x03
 
+### For
 
-
-
+### Switch
+根据switch的匹配值是否相对联系，有2种实现：
++  tableswitch 且会用不存在的case来填充整个table
+    对于如下Switch
+    ```
+    public int chooseNear(int i) {
+        switch (i) {
+            case 100: return 0;
+            case 101: return 1;
+            case 104: return 4;
+            default: return -1;
+        }
+    }
+    ```
+    反编译源码如下：
+	```
+	0: iload_1
+       1: tableswitch   { // 100 to 104
+                   100: 36 <-- 匹配值 与 跳转地址
+                   101: 38
+                   102: 42 <-- 填充default跳转
+                   103: 42 <-- 填充default跳转
+                   104: 40
+               default: 42
+          }
+      36: iconst_0
+      37: ireturn
+      38: iconst_1
+      39: ireturn
+      40: iconst_4
+      41: ireturn
+      42: iconst_m1
+      43: ireturn
+	```
+	其中跳转的伪代码如下：
+	```
+	int val = pop();                // pop an int from the stack
+	if (val < low || val > high) {  // if its less than <low> or greater than <high>,
+		pc += default;              // branch to default 
+    } else {                        // otherwise
+		pc += table[val - low];     // 由于有填充，可以直接通过下标跳转，branch to entry in table
+    }
+	```
++ 
 
 
